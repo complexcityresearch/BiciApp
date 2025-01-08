@@ -59,7 +59,7 @@ class MapaDensidad2:
         fig = px.density_mapbox(datos, lat="Lat", lon="Long", z="Datos", radius=50,
                                 center=dict(lat=self.coordenadaCentro[0], lon=self.coordenadaCentro[1]),
                                 zoom=zoom,
-                                mapbox_style="stamen-terrain",
+                                mapbox_style="open-street-map",
                                 hover_data={'Estacion': True},
                                 opacity=opacidad,
                                 range_color=(valorMin,valorMax))
