@@ -55,7 +55,7 @@ class MyFrame(wx.Frame):
         # Crear los botones
         button1 = wx.Button(self, label="<")
         button2 = wx.Button(self, label=">")
-        self.button3 = wx.Button(self,label="Cargar Instante")
+        self.button3 = wx.Button(self,label="Load instant")
 
         button1.Bind(wx.EVT_BUTTON, self.botonPulsadoDecrementar)
         button2.Bind(wx.EVT_BUTTON, self.botonPulsadoIncrementar)

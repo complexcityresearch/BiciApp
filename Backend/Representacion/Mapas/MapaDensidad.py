@@ -55,12 +55,12 @@ class MapaDensidad2:
             valorMin =0
             opacidad = 0.0
 
-
-        fig = px.density_mapbox(datos, lat="Lat", lon="Long", z="Datos", radius=50,
+        datos.columns = ['Station','Lat','Long','Data'] #Translatin to english. This is temporal
+        fig = px.density_mapbox(datos, lat="Lat", lon="Long", z="Data", radius=50,
                                 center=dict(lat=self.coordenadaCentro[0], lon=self.coordenadaCentro[1]),
                                 zoom=zoom,
                                 mapbox_style="open-street-map",
-                                hover_data={'Estacion': True},
+                                hover_data={'Station': True},
                                 opacity=opacidad,
                                 range_color=(valorMin,valorMax))
 

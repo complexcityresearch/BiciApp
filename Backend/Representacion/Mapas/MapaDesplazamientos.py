@@ -83,7 +83,7 @@ class MapaDesplazamientos:
             route = folium.PolyLine(locations=coordinates, weight=lineWeight, color=color_linea, name=f'Rute {i}')
 
             # Se añade la ruta a un grupo, lo que permite poder seleccionarla en el desplegable (arriba derecha)
-            route_group = folium.FeatureGroup(name=f'Ruta {i}')
+            route_group = folium.FeatureGroup(name=f'Rute {i}')
             route_group.add_child(route)
 
             # Se incluye el grupo en el mapa

@@ -329,7 +329,7 @@ class VentanaEstadisticas2(Ventana):
     def __seleccionarEstadisticas(self):
 
         self.combobox.place(relx=0.3, rely=0.3)
-        self.combobox.set("Selecciona la estadistica")
+        self.combobox.set("Select the statistic")
 
     def __getBotonesPulsados(self):
         try:

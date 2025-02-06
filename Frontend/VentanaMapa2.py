@@ -36,7 +36,7 @@ class VentanaMapa2(Ventana):
         self.opcionesPaleta = ["Green Scale", "Magma","Circle of colors"]
 
         self.combobox.place(relx=0.3, rely=0.3)
-        self.combobox.set("Select a statistic")
+        self.combobox.set("Select a map")
         #Ventana:
         self.__titulo(ventana)
         self.__seleccionMatrices(ventana)

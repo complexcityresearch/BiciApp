@@ -64,18 +64,18 @@ class VentanaAnalizador(Ventana):
 
         cadena = "Deltas : \t\t\t\t\t" + texto[0] + "\n" + \
          "Stress: \t\t\t\t\t" + texto[1] + "\n" +\
-         "Kms Reales coger: \t\t\t\t" + texto[2] + "\n" +\
-         "Kms Reales soltar: \t\t\t\t" + texto[3] + "\n" +\
-         "Kms Ficticios coger: \t\t\t\t" + texto[4] + "\n" +\
-         "Kms Ficticios soltar: \t\t\t\t" + texto[5] + "\n" +\
-         "Peticiones Reales resueltas coger: \t\t" + texto[6] + "\n" +\
-         "Peticiones Reales resueltas soltar: \t\t" + texto[7] + "\n" +\
-         "Peticiones Reales no resueltas coger: \t\t" + texto[8] + "\n" +\
-         "Peticiones Reales no resueltas soltar: \t\t" + texto[9] + "\n" +\
-         "Peticiones Ficticias resueltas coger: \t\t" + texto[10] + "\n" +\
-         "Peticiones Ficticias resueltas soltar: \t\t" + texto[11] + "\n" +\
-         "Peticiones Ficticias no resueltas coger: \t" + texto[12] + "\n" +\
-         "Peticiones Ficticias no resueltas soltar: \t" + texto[13]
+         "Kilometers to pick a bicycle: \t\t\t\t" + texto[2] + "\n" +\
+         "Kilometers to drop a bicycle: \t\t\t\t" + texto[3] + "\n" +\
+         "Unreal kilometers to pick a bicycle: \t\t\t\t" + texto[4] + "\n" +\
+         "Unreal kilometers to drop a bicycle: \t\t\t\t" + texto[5] + "\n" +\
+         "Solved Petitions to pick a bicycle: \t\t" + texto[6] + "\n" +\
+         "Solved Petitions to drop a bicycle: \t\t" + texto[7] + "\n" +\
+         "Not solved Petitions to pick a bicycle: \t\t" + texto[8] + "\n" +\
+         "Not solved Petitions to drop a bicycle: \t\t" + texto[9] + "\n" +\
+         "Solved unreal petitions to pick a bicycle: \t\t" + texto[10] + "\n" +\
+         "Solved unreal petitions to drop a bicycle: \t\t" + texto[11] + "\n" +\
+         "Not solved unreal petitions to pick a bicycle: \t" + texto[12] + "\n" +\
+         "Not solved unreal petitions to drop a bicycle: \t" + texto[13]
         return cadena
 
     def __menu(self,ventana):

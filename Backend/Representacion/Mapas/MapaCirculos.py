@@ -38,7 +38,7 @@ class MapaCirculos:
 
                 colormap = color_scale.scale(0, valorMax)
                 colormap = colormap.to_step(n=4)
-                colormap.caption = 'Datos representados'
+                colormap.caption = 'Data represented'
                 colormap.add_to(self.mapa)
 
 
