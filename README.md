@@ -12,7 +12,7 @@ Aplicación para el análisis de sistemas complejos
 
 1. Creación de entorno virtual Python 3.9.
 ```
-	C:\Users\<User>\<Rute>\<Folder> -m venv env/my-env .
+	C:\Users\<User>\<Rute>\<FolderPython3.9> -m venv env/my-env .
 ```
 
 2. Ejecución de intérprete virtual ejecutando al script ubicado en bin/source.
