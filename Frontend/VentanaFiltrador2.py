@@ -220,7 +220,7 @@ class VentanaFiltrador2(Ventana):
 
         texto_deltasFinales.place(relx=0.7, rely=0.3)
         self.textbox_deltasTransformar.place(relx=0.8, rely=0.3)
-        check_mediaOacumulada = tk.CTkCheckBox(ventana, text="Media/Acumulada", variable=self.delta_media)
+        check_mediaOacumulada = tk.CTkCheckBox(ventana, text="Average", variable=self.delta_media)
         check_mediaOacumulada.place(relx=0.9, rely=0.3)
 
 

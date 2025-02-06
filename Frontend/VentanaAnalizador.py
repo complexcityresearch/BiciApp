@@ -60,23 +60,40 @@ class VentanaAnalizador(Ventana):
 
         texto.place(relx=0.5,rely=0.6,anchor=tk.CENTER)
 
-    def __parsearResumen(self,texto:list[str]):
+    def __parsearResumen(self, texto: list[str]):
+        # Convertir todos los valores a float
+        try:
+            valores = [float(valor.replace(",", ".")) for valor in texto]  
+        except ValueError:
+            return "Error: Some values are not numbers."
 
-        cadena = "Deltas : \t\t\t\t\t" + texto[0] + "\n" + \
-         "Stress: \t\t\t\t\t" + texto[1] + "\n" +\
-         "Kilometers to pick a bicycle: \t\t\t\t" + texto[2] + "\n" +\
-         "Kilometers to drop a bicycle: \t\t\t\t" + texto[3] + "\n" +\
-         "Unreal kilometers to pick a bicycle: \t\t\t\t" + texto[4] + "\n" +\
-         "Unreal kilometers to drop a bicycle: \t\t\t\t" + texto[5] + "\n" +\
-         "Solved Petitions to pick a bicycle: \t\t" + texto[6] + "\n" +\
-         "Solved Petitions to drop a bicycle: \t\t" + texto[7] + "\n" +\
-         "Not solved Petitions to pick a bicycle: \t\t" + texto[8] + "\n" +\
-         "Not solved Petitions to drop a bicycle: \t\t" + texto[9] + "\n" +\
-         "Solved unreal petitions to pick a bicycle: \t\t" + texto[10] + "\n" +\
-         "Solved unreal petitions to drop a bicycle: \t\t" + texto[11] + "\n" +\
-         "Not solved unreal petitions to pick a bicycle: \t" + texto[12] + "\n" +\
-         "Not solved unreal petitions to drop a bicycle: \t" + texto[13]
+        # Definir las etiquetas
+        etiquetas = [
+            "Deltas",
+            "Stress",
+            "Kilometers to pick a bicycle",
+            "Kilometers to drop a bicycle",
+            "Unreal km to pick a bicycle",
+            "Unreal km to drop a bicycle",
+            "Solved petitions to pick",
+            "Solved petitions to drop",
+            "Not solved petitions to pick",
+            "Not solved petitions to drop",
+            "Solved unreal petitions to pick",
+            "Solved unreal petitions to drop",
+            "Not solved unreal petitions to pick",
+            "Not solved unreal petitions to drop"
+        ]
+
+        # Formatear en columnas
+        cadena = "Data Summary:\n"
+        cadena += "-" * 50 + "\n"
+
+        for etiqueta, valor in zip(etiquetas, valores):
+            cadena += f"{etiqueta:<40} {valor:>10.2f}\n" 
+
         return cadena
+
 
     def __menu(self,ventana):
         menubar = Menu(ventana)

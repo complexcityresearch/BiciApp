@@ -111,10 +111,10 @@ class VentanaDesplazamientos(Ventana):
         self.labelTextos['instante'].place(relx=0.1,rely=0.2)
         self.instanteRepresentar.place(relx = 0.1, rely=0.3)
         self.labelTextos['Tipo de accion'].place(relx=0.1,rely=0.4)
-        check_button2 = tk.CTkCheckBox(ventana, text="Andar/Bicicleta", variable=self.check_tipo_movimiento)
+        check_button2 = tk.CTkCheckBox(ventana, text="Walking", variable=self.check_tipo_movimiento)
         check_button2.place(relx=0.1,rely=0.5)
         self.labelTextos['Tipo de peticion'].place(relx=0.1,rely=0.6)
-        check_button3 = tk.CTkCheckBox(ventana, text="Reales/Ficticios", variable=self.check_tipo_peticion)
+        check_button3 = tk.CTkCheckBox(ventana, text="Real", variable=self.check_tipo_peticion)
         check_button3.place(relx=0.1, rely=0.7)
 
 

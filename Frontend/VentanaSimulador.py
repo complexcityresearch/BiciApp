@@ -16,6 +16,7 @@ class VentanaSimulador(Ventana):
         super().__init__("Simulator")
 
         ventana = super().getVentanaAttribute()
+        self.ventana = ventana # Temporal fix to show text. Pending to general fix.
         self.titulo(ventana)
         self.directorioEntrada = ""
         self.directorioSalida = ""
@@ -27,6 +28,7 @@ class VentanaSimulador(Ventana):
         self.texbox_costeAndar = tk.CTkTextbox(master=ventana, height=10)
         self.textbox_extraerDias = tk.CTkTextbox(master=ventana, height=10)
         self.textoExplicacion(ventana)
+        
         super().ejecutarVentana()
 
     def titulo(self, ventana):
@@ -66,14 +68,14 @@ class VentanaSimulador(Ventana):
             font=("Arial", 10))
         texto_delta.place(relx=0.2, rely=0.6, anchor=tk.CENTER)
         self.texbox_delta.place(relx=0.3, rely=0.6, anchor=tk.CENTER)
-
+        self.texbox_delta.insert("0.0", "15")
         texto_stress = tk.CTkLabel(
             master=ventana,
             text="Stress :",
             font=("Arial", 10))
         texto_stress.place(relx=0.7, rely=0.6, anchor=tk.CENTER)
         self.texbox_stress.place(relx=0.8, rely=0.6, anchor=tk.CENTER)
-
+        self.texbox_stress.insert("0.0", "0")
         texto_tipoStress = tk.CTkLabel(
             master=ventana,
             text="Stress Type :",
@@ -90,10 +92,12 @@ class VentanaSimulador(Ventana):
                                           variable=self.opcion_var, value=2)
         radiobutton_3 = tk.CTkRadioButton(master=ventana, text="Stress Everything",
                                           variable=self.opcion_var, value=3)
-        radiobutton_1.place(relx=0.3,rely=0.7)
-        radiobutton_2.place(relx=0.4, rely=0.7)
-        radiobutton_3.place(relx=0.5, rely=0.7)
-
+        radiobutton_4 = tk.CTkRadioButton(master=ventana, text="No Stress",
+                                          variable=self.opcion_var, value="")#For no stressing.
+        radiobutton_1.place(relx=0.25,rely=0.7)
+        radiobutton_2.place(relx=0.35, rely=0.7)
+        radiobutton_3.place(relx=0.45, rely=0.7)
+        radiobutton_4.place(relx=0.55, rely= 0.7)
 
         texto_estacionesStress = tk.CTkLabel(
             master=ventana,
@@ -120,24 +124,35 @@ class VentanaSimulador(Ventana):
         self.textbox_extraerDias.place(relx=0.8, rely=0.8, anchor=tk.CENTER)
         self.textbox_extraerDias.insert("0.0", "_")
 
-        boton_RealizarSimulacion = tk.CTkButton(master=ventana, text="Perform Simulation",
+        self.boton_RealizarSimulacion = tk.CTkButton(master=ventana, text="Perform Simulation",
                                           command=self.realizarSimulacion)
-        boton_RealizarSimulacion.place(relx=0.5, rely=0.9, anchor=tk.CENTER)
+        self.boton_RealizarSimulacion.place(relx=0.5, rely=0.9, anchor=tk.CENTER)
 
     def cargarDirectorioEntrada(self):
 
         directorio = tk.filedialog.askdirectory()
-        print(directorio)
         self.directorioEntrada = directorio
+        texto_ruta = tk.CTkLabel(
+            master=self.ventana,
+            text=directorio,
+            font=("Arial", 10))
+        texto_ruta.place(relx=0.4, rely=0.45, anchor=tk.CENTER)
 
     def cargarDirectorioSalida(self):
 
         directorio = tk.filedialog.askdirectory()
-        print(directorio)
         self.directorioSalida = directorio
-
+        texto_ruta = tk.CTkLabel(
+            master=self.ventana,
+            text=directorio,
+            font=("Arial", 10))
+        texto_ruta.place(relx=0.6, rely=0.45, anchor=tk.CENTER)
 
     def realizarSimulacion(self):
+        color_original = self.boton_RealizarSimulacion.cget("fg_color")
+        self.boton_RealizarSimulacion.configure(fg_color="grey")
+        self.ventana.update_idletasks()  # FORZA actualización de la interfaz
+
         rutaEntrada = self.directorioEntrada
         rutaSalida = self.directorioSalida
         delta = float(self.texbox_delta.get("0.0", "end-1c"))
@@ -198,3 +213,4 @@ class VentanaSimulador(Ventana):
         pd.DataFrame(Constantes.COORDENADAS).to_csv(join(rutaSalida, "coordenadas" + ".csv"), index=False)
         archivoCapacidad = auxiliar_ficheros.buscar_archivosEntrada(rutaEntrada, ["capacidades"])[0]
         pd.read_csv(archivoCapacidad).transpose().to_csv(join(rutaSalida,"capacidades.csv"), index=False)
+        self.boton_RealizarSimulacion.configure(fg_color= color_original)

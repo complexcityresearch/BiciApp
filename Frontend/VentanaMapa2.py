@@ -227,7 +227,7 @@ class VentanaMapa2(Ventana):
         texto_deltasFinales.place(relx=0.7, rely=0.3)
         self.textbox_deltasTransformar.place(relx=0.8, rely=0.3)
         self.textbox_deltasTransformar.insert(tk.END, "60")
-        check_mediaOacumulada = tk.CTkCheckBox(ventana, text="Average/Cumulative", variable=self.delta_media)
+        check_mediaOacumulada = tk.CTkCheckBox(ventana, text="Average", variable=self.delta_media)
         check_mediaOacumulada.place(relx=0.9, rely=0.3)
 
     #Funcion para el interfaz de seleccionar estaciones:
