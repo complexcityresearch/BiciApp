@@ -194,14 +194,6 @@ class VentanaSimulador(Ventana):
             ficheros[0] = ficheroDelta_salidaStress
             ficheros[5] = ficheroTendencias_salidaStress
 
-        '''
-        bs = bike_simulator5()
-        nearest_stations_idx, nearest_stations_distance, initial_movements, real_movements, capacidadInicial, coordenadas = bs.load_data(
-            directorios=ficheros, directorios_DiastanciasAndarBicicleta=ficheros_distancia)
-        coste, matricesSalida = bs.evaluate_solution(capacidadInicial, initial_movements, real_movements,
-                                                     nearest_stations_idx, nearest_stations_distance)
-        resumen = auxiliar_ficheros.hacerResumenMatricesSalida(matricesSalida)'''
-
         bs = bike_simulator5()
         nearest_stations_idx, nearest_stations_distance, initial_movements, real_movements, capacidadInicial, coordenadas = bs.load_data(
             directorios=ficheros, directorios_DiastanciasAndarBicicleta=ficheros_distancia)

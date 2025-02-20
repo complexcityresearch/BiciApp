@@ -1,0 +1,9 @@
+{
+    "input_directory": "C:\\Users\\luisg\\Desktop\\ProyectoBicicletas\\Datos\\Resultados_Simulador\\Marzo_Reales",
+    "output_directory": "C:\\ruta\\de\\salida",
+    "matrix_list": "1",
+    "graph_type": "Average graph of a station",
+    "graph_param": "0-All",
+    "delta_transformation_type": "mean"
+  }
+  

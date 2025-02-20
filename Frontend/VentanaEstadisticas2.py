@@ -23,7 +23,9 @@ class VentanaEstadisticas2(Ventana):
         self.textbox_deltasActuales = tk.CTkTextbox(master=ventana, height=5, width=135)
         self.textbox_deltasTransformar = tk.CTkTextbox(master=ventana, height=5, width=135)
         self.textbox_dias = tk.CTkTextbox(master=ventana, height=5, width=135)
+        self.textbox_dias.insert("0.0","all")
         self.textbox_estacion = tk.CTkTextbox(master=ventana, height=5, width=135)
+        
         self.combobox = tk.CTkOptionMenu(master=ventana,
                                          values=["Accumulated graph of a station",
                                                  "Average graph of a station",
@@ -52,6 +54,7 @@ class VentanaEstadisticas2(Ventana):
         self.__mostrarSeleccionEstacionDias()
 
         self.__cambiarDeltas(ventana)
+        self.seleccionarGrafico("Bar graph Average of all stations")
         super().ejecutarVentana()
 
     def __titulo(self, ventana):
@@ -121,15 +124,15 @@ class VentanaEstadisticas2(Ventana):
 
     def __seleccionMatrices(self, ventana):
         check_ocupacion = tk.BooleanVar()
-        check_kms_coger = tk.BooleanVar()
-        check_kms_dejar = tk.BooleanVar()
+        check_kms_coger = tk.BooleanVar(value=True)
+        check_kms_dejar = tk.BooleanVar(value=True)
         check_peticionesResueltas_coger = tk.BooleanVar()
         check_peticionesResueltas_dejar = tk.BooleanVar()
         check_peticionesNoResueltas_coger = tk.BooleanVar()
         check_peticionesNoResueltas_dejar = tk.BooleanVar()
         check_ocupacionRelativa = tk.BooleanVar()
-        check_kmsFicticios_coger = tk.BooleanVar()
-        check_kmsFicticios_dejar = tk.BooleanVar()
+        check_kmsFicticios_coger = tk.BooleanVar(value=True)
+        check_kmsFicticios_dejar = tk.BooleanVar(value=True)
         check_NoResueltas_ficticias_coger = tk.BooleanVar()
         check_NoResueltas_ficticias_dejar = tk.BooleanVar()
         check_Matriz_Custom = tk.BooleanVar()
@@ -274,7 +277,6 @@ class VentanaEstadisticas2(Ventana):
     def __mostrarSeleccionEstacionDias(self):
 
         self.labels_titulos['seleccionEstacionDias'].place(relx=0.6, rely=0.65)
-
         self.textbox_estacion.place(relx=0.6, rely=0.7)
         self.textbox_dias.place(relx=0.7, rely=0.7)
 
@@ -300,6 +302,8 @@ class VentanaEstadisticas2(Ventana):
         self.labels_titulos['seleccionGraficaComparacionEstaciones'].place(relx=0.6, rely=0.65)
         self.textbox_estacion.place(relx=0.6, rely=0.7)
         self.textbox_dias.place(relx=0.7, rely=0.7)
+
+
 
     def __ocultarSeleccionGraficaComparacionEstaciones(self):
         self.labels_titulos['seleccionGraficaComparacionEstaciones'].place_forget()
@@ -329,7 +333,7 @@ class VentanaEstadisticas2(Ventana):
     def __seleccionarEstadisticas(self):
 
         self.combobox.place(relx=0.3, rely=0.3)
-        self.combobox.set("Select the statistic")
+        self.combobox.set("Bar graph Average of all stations")
 
     def __getBotonesPulsados(self):
         try:
@@ -453,7 +457,6 @@ class VentanaEstadisticas2(Ventana):
         messagebox.showwarning("Warning", "There are still parameters to be filled in")
 
     def seleccionarGrafico(self, opcion_seleccionada):
-
         if opcion_seleccionada == "Accumulated graph of a station" or opcion_seleccionada == "Average graph of a station":
             self.__ocultarSeleccionHistogramaDiario()
             self.__ocultarSeleccionGraficaComparacionEstaciones()

@@ -1,0 +1,11 @@
+{
+    "input_directory": "C:\\Users\\luisg\\Desktop\\ProyectoBicicletas\\Datos\\Resultados_Simulador\\Marzo_Reales",
+    "output_directory": "C:\\ruta\\de\\salida",
+    "matrix_list": "1",
+    "delta_origin" : 15,
+    "delta_objetive" : 60,
+    "delta_transformation_type" : "mean",
+    "map_type" : "Voronoi Map",
+    "station_list" : "All"
+  }
+  
