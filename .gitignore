@@ -1,3 +1,7 @@
 Datos\
 Resultados_Analisis\
 Resultados_Simulador\
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
