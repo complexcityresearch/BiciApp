@@ -4,6 +4,7 @@ import shutil
 from os.path import join
 import numpy as np
 import pandas as pd
+from argparse import Namespace
 from matplotlib.pyplot import clf
 from Backend import Constantes
 from Backend.Auxiliares import auxiliar_ficheros, Extractor, auxiliaresCalculos
@@ -19,13 +20,30 @@ from Backend.estadisticasOcupacionHorarias import estadisticasOcupacionHorarias
 from bike_simulator5 import bike_simulator5
 
 
-def simularCMD(comando: [str]):
-    rutaEntrada = comando[2]
-    rutaSalida = comando[3]
-    comando_stress = (comando[4])
-    tipoStress = float(comando[5])
-    coste_andar = float(comando[6])
-    delta = int(comando[7])
+def simularCMD(comando: [str], args: None | Namespace = None):
+
+    if args is None:
+        rutaEntrada = comando[2]
+        rutaSalida = comando[3]
+        comando_stress = (comando[4])
+        tipoStress = float(comando[5])
+        coste_andar = float(comando[6])
+        delta = int(comando[7])
+    else:
+        rutaEntrada = args.rutaEntrada
+        print("rutaEntrada:", rutaEntrada)
+        rutaSalida = args.rutaSalida
+        print("rutaSalida:", rutaSalida)
+        comando_stress = args.comando_stress
+        print("comando_stress:", comando_stress)
+        tipoStress = args.tipoStress
+        print("tipoStress:", tipoStress)
+        coste_andar = args.coste_andar
+        print("coste_andar:", coste_andar)
+        delta = args.delta
+        print("delta:", delta)
+
+    return
 
     if '+' in comando_stress:
         estaciones_stress = comando_stress.split('+')[1]
@@ -77,30 +95,48 @@ def simularCMD(comando: [str]):
     pd.read_csv(archivoCapacidad).to_csv(join(rutaSalida, "capacidades.csv"), index=False)
 
 
-def analizarCMD(comando: [str]):
-    pathEntrada = comando[2]
-    pathSalida = comando[3]
-    seleccionAgregacion_matriz = comando[4]
-    deltaDeseado_media = comando[5]
-    deltaDeseado_acumulado = comando[6]
-    histograma_medio_estacion = comando[7]
-    histograma_acumulado_estacion = comando[8]
-    histograma_dia = comando[9]
-    histograma_comparar_estaciones = comando[10]
-    histograma_comparar_matrices = comando[11]
+def analizarCMD(comando: [str], args: None | Namespace = None):
+    if args is None:
+        pathEntrada = comando[2]
+        pathSalida = comando[3]
+        seleccionAgregacion_matriz = comando[4]
+        deltaDeseado_media = comando[5]
+        deltaDeseado_acumulado = comando[6]
+        histograma_medio_estacion = comando[7]
+        histograma_acumulado_estacion = comando[8]
+        histograma_dia = comando[9]
+        histograma_comparar_estaciones = comando[10]
+        histograma_comparar_matrices = comando[11]
+        mapa_densidad = comando[12]
+        mapa_densidad_video = comando[13]
+        mapa_voronoi = comando[14]
+        mapa_circulo = comando[15]
+        mapa_desplazamientos = comando[16]
+        filtrado_EstSuperiorValor = comando[17]
+        filtrado_EstSuperiorValorDias = comando[18]
+        filtrado_HorasSuperiorValor = comando[19]
+        filtrado_PorcentajeHoraEstacionMasValor = comando[20]
+    else:
+        pathEntrada = args.pathEntrada
+        pathSalida = args.pathSalida
+        seleccionAgregacion_matriz = args.seleccionAgregacion_matriz
+        deltaDeseado_media = args.deltaDeseado_media
+        deltaDeseado_acumulado = args.deltaDeseado_acumulado
+        histograma_medio_estacion = args.histograma_medio_estacion
+        histograma_acumulado_estacion = args.histograma_acumulado_estacion
+        histograma_dia = args.histograma_dia
+        histograma_comparar_estaciones = args.histograma_comparar_estaciones
+        histograma_comparar_matrices = args.histograma_comparar_matrices
+        mapa_densidad = args.mapa_densidad
+        mapa_densidad_video = args.mapa_densidad_video
+        mapa_voronoi = args.mapa_voronoi
+        mapa_circulo = args.mapa_circulo
+        mapa_desplazamientos = args.mapa_desplazamientos
+        filtrado_EstSuperiorValor = args.filtrado_EstSuperiorValor
+        filtrado_EstSuperiorValorDias = args.filtrado_EstSuperiorValorDias
+        filtrado_HorasSuperiorValor = args.filtrado_HorasSuperiorValor
 
-    mapa_densidad = comando[12]
-    mapa_densidad_video = comando[13]
-    mapa_voronoi = comando[14]
-    mapa_circulo = comando[15]
-    mapa_desplazamientos = comando[16]
-
-    filtrado_EstSuperiorValor = comando[17]
-    filtrado_EstSuperiorValorDias = comando[18]
-    filtrado_HorasSuperiorValor = comando[19]
-    filtrado_PorcentajeHoraEstacionMasValor = comando[20]
-
-    matrices,resumentxt = GuardarCargarMatrices.cargarSimulacionesParaAnalisis(pathEntrada)
+    matrices, resumentxt = GuardarCargarMatrices.cargarSimulacionesParaAnalisis(pathEntrada)
 
     Constantes.DELTA_TIME = float(resumentxt[0])
     Constantes.PORCENTAJE_ESTRES = float(resumentxt[1])
@@ -399,12 +435,19 @@ def analizarCMD(comando: [str]):
                                                  parametrosConsulta=nombreOperador + str(valor) + "-" + str(estaciones))
 
 
-def simuladorEstadistico(comando: [str]):
-    rutaDeltas = comando[2]
-    rutaSalida = comando[3]
-    deltaActual = comando[4]
-    diasAsimular = comando[5]
-    ruleta = comando[6]
+def simuladorEstadistico(comando: [str], args: None | Namespace = None):
+    if args is None:
+        rutaDeltas = comando[2]
+        rutaSalida = comando[3]
+        deltaActual = comando[4]
+        diasAsimular = comando[5]
+        ruleta = comando[6]
+    else:
+        rutaDeltas = args.rutaDeltas
+        rutaSalida = args.rutaSalida
+        deltaActual = args.deltaActual
+        diasAsimular = args.diasAsimular
+        ruleta = args.ruleta
 
     Constantes.RUTA_SALIDA = str(rutaSalida)
     Constantes.DELTA_TIME = int(deltaActual)
@@ -424,10 +467,17 @@ def simuladorEstadistico(comando: [str]):
 
     nuevoFicheroDeltas.to_csv(join(rutaSalida,nombre), index=False)
 
-def restarDirectorios(comando: [str]):
-    rutaDirectorio1 = comando[2]
-    rutaDirectorio2 = comando[3]
-    rutaDirectorioSalida = comando[4]
+
+def restarDirectorios(comando: [str], args: None | Namespace = None):
+    if args is None:
+        rutaDirectorio1 = comando[2]
+        rutaDirectorio2 = comando[3]
+        rutaDirectorioSalida = comando[4]
+    else:
+        rutaDirectorio1 = args.rutaDirectorio1
+        rutaDirectorio2 = args.rutaDirectorio2
+        rutaDirectorioSalida = args.rutaDirectorioSalida
+
     print("Restando las matrices del directorio " + str(rutaDirectorio1) + " menos las matrices del directorio " + str(rutaDirectorio2))
 
     directorios_resta = [Constantes.OCUPACION,
