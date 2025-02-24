@@ -55,7 +55,7 @@ def simularCMD(comando: [str], args: None | Namespace = None):
     # Intercambio deltas con la extracción de días.
 
     if len(comando) > 8 and comando[-1] != Constantes.CARACTER_NULO_CMD:  # Extraer dias es optativo.
-        dias = list(map(int, comando[8].split(";")))
+        dias = args.dias #list(map(int, comando[8].split(";")))
         path_fichero = join(rutaSalida, auxiliar_ficheros.formatoArchivo("Extraccion_" + str(dias), "csv"))
         Extractor.extraerDias(ficheros[0], delta, dias, path_fichero, mantenerPrimeraFila=True)
         ficheros[0] = path_fichero
