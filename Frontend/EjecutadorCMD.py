@@ -21,7 +21,6 @@ from bike_simulator5 import bike_simulator5
 
 
 def simularCMD(comando: [str], args: None | Namespace = None):
-
     if args is None:
         rutaEntrada = comando[2]
         rutaSalida = comando[3]
@@ -31,19 +30,11 @@ def simularCMD(comando: [str], args: None | Namespace = None):
         delta = int(comando[7])
     else:
         rutaEntrada = args.rutaEntrada
-        print("rutaEntrada:", rutaEntrada)
         rutaSalida = args.rutaSalida
-        print("rutaSalida:", rutaSalida)
         comando_stress = args.comando_stress
-        print("comando_stress:", comando_stress)
         tipoStress = args.tipoStress
-        print("tipoStress:", tipoStress)
         coste_andar = args.coste_andar
-        print("coste_andar:", coste_andar)
         delta = args.delta
-        print("delta:", delta)
-
-    return
 
     if '+' in comando_stress:
         estaciones_stress = comando_stress.split('+')[1]
@@ -143,24 +134,6 @@ def analizarCMD(comando: [str], args: None | Namespace = None):
     Constantes.COSTE_ANDAR = float(resumentxt[2])
     Constantes.RUTA_SALIDA = pathSalida
 
-
-
-    # Prueba
-    '''
-    #md = MapaDesplazamientos(Constantes.COORDENADAS,matrices[Constantes.DESPLAZAMIENTOS].matrix)
-    md.prueba(1017,1,False)'''
-
-    # En este punto, ya debería de tener cargadas las matrices y los datos básicos para realizar lo demás.
-
-    # Prueba
-    '''
-    eoc = estadisticasOcupacionHorarias(matrices[Constantes.OCUPACION_RELATIVA].matrix,60)
-    titulo = auxiliar_ficheros.formatoArchivo("Grafica_Prueba_", "png")
-    eoc.HistogramaCompararMatrices(Constantes.MATRIZ_CUSTOM.matrix,60,[0],[0],nombreGrafica=titulo)
-    '''
-    # End Prueba
-
-    # Seleccion/Agregacion de matrices:
 
     operacion = 1
     if '(-)' in seleccionAgregacion_matriz:
@@ -532,29 +505,6 @@ def restarDirectorios(comando: [str], args: None | Namespace = None):
         archivoResultante = (Agrupador.sustraerMatrices(matriz1, matriz2))
         nombre = auxiliar_ficheros.formatoArchivo("DIFERENCIA " + archivo, "csv")
         archivoResultante.to_csv(join(rutaDirectorioSalida, nombre), index=False)
-
-'''
-def clusteringCMD(comando: [str]):
-    pathEntrada = comando[2]
-    rutaSalida = comando[3]
-    idMatriz = comando[4]
-    deltaTime = comando[5]
-    dias = comando[6]
-    metodoCorrelacion= comando[7]
-    matrices, resumentxt = GuardarCargarMatrices.cargarSimulacionesParaAnalisis(pathEntrada)
-
-    dias = list(range(0,int(dias)))
-
-    if metodoCorrelacion == '1':
-        metodo = scipy.stats.pearsonr
-    else:
-        metodo = scipy.stats.spearmanr
-
-    clustering = Clustering(matrices[Constantes.LISTA_MATRICES[int(idMatriz)]].matrix,int(deltaTime),dias,metodo,rutaSalida)
-    matrizDistancia = clustering.generarMatrizDistancia()
-    clustering.KmeanClustering(matrizDistancia)
-'''
-
 
 # Dado un texto, detecta que operador contiene.
 def __obtenerOperador(string: str):
