@@ -24,3 +24,19 @@ Aplicación para el análisis de sistemas complejos
 ```
 	pip install -r requirements.txt
 ```
+
+## Puesta en marcha
+
+1.- Acceder mediante cmd a la ruta:
+```
+	cd C:\Users\<User>\<Rute>\<venv>\Scripts\
+```
+2.- Ejecutar el script "Activate".
+```
+	activate
+```
+3.- Ejecutar el main.py principal en la ruta del programa.
+```
+	cd C:\Users\<User>\<Rute>>
+	python main.py
+```
